@@ -1,4 +1,11 @@
-   def check_word(hidden_word, guess):
+def menu():
+    print('Welcome to Wordle')
+    print('You have 6 chances to guess the word of the day')
+    
+menu()
+
+
+def check_word(hidden_word, guess):
     for i, char in enumerate(guess):
         index_duplicate = []
         count = 0
@@ -16,14 +23,15 @@
         if char == hidden_word[i]:
             guess = guess[:i] + char.upper() + guess[i + 1:]
         elif char in hidden_word and i not in index_duplicate and len(index_duplicate)== len(index_guess):
-            guess = guess[:i] + '.' + guess[i + 1:]
+            guess = guess[:i] + char.lower() + guess[i + 1:]
         elif char in hidden_word and i not in index_duplicate:
-            guess = guess[:i] + '.' + guess[i + 1:]
+            guess = guess[:i] + '#' + guess[i + 1:]
         else:
-            guess = guess[:i] + '.' + guess[i + 1:]
+            guess = guess[:i] + '#' + guess[i + 1:]
     return guess
 
 hidden_word = input()
 guess = input()
 print(check_word(hidden_word, guess))
 
+       
